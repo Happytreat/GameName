@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { hot } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { PersistGate } from 'redux-persist/integration/react';
+import Router from './services/router';
+import { history, persistor, getStore } from './services/store';
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    // TODO: Get name and version from env
+    console.log('Game Name client: v1.0');
+
+    return (
+      <div className="App container">
+        <Provider store={getStore()}>
+          <PersistGate loading={null} persistor={persistor}>
+            <ConnectedRouter history={history}>
+              <Router />
+            </ConnectedRouter>
+          </PersistGate>
+        </Provider>
+      </div>
+    );
+  }
 }
 
-export default App;
+// export default App;
+export default hot(module)(App);
