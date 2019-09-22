@@ -34,6 +34,20 @@ const styles = {
     marginTop: -12,
     marginLeft: -12,
   },
+  button: {
+    color: '#000',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '25vh',
+    border: '#D2F2FF',
+    textTransform: 'None',
+    backgroundColor: '#D2F2FF',
+    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
+    padding: '0.5rem 0.8rem',
+    margin: '0.5rem',
+  }
 };
 
 const ProgressButton = ({
@@ -42,7 +56,7 @@ const ProgressButton = ({
   <div className={styles.wrapper}>
     <Button
       variant="contained"
-      color='primary'
+      style={styles.button}
       disabled={loading}
       {...button}
       // className={buttonClass}

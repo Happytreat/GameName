@@ -23,19 +23,6 @@ const styles = {
   //   size: '14px',
   //   fontWeight: '600',
   // },
-  button: {
-    color: '#000',
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontSize: '12px',
-    fontWeight: '600',
-    border: '#D2F2FF',
-    textTransform: 'None',
-    backgroundColor: '#D2F2FF',
-    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
-    padding: '0.5rem 0.8rem',
-    margin: '0.5rem',
-  }
 };
 
 export default class HomePage extends Component {
@@ -46,14 +33,12 @@ export default class HomePage extends Component {
         <ProgressButton variant="contained"
                         // disabled={isSubmitting}
                         loading={false}
-                        style={styles.button}
                         onClick={(x) => x}>
           Play as game master
         </ProgressButton>
         <ProgressButton variant="contained"
           // disabled={isSubmitting}
                         loading={false}
-                        style={styles.button}
                         onClick={(x) => x}>
           Play as guest
         </ProgressButton>
