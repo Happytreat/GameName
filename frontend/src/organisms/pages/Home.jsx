@@ -10,6 +10,7 @@ const styles = {
     backgroundImage: `url(${Background})`,
     /* Full height */
     height: '100vh',
+    fontFamily: "Montserrat",
 
     /* Center and scale the image nicely */
     // backgroundPosition: 'center',
