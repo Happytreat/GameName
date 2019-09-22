@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Background from '../../asset/background.jpg';
+import Background from '../../asset/Background.png';
 import NotFoundImg from "../../asset/404.svg";
 
 const styles = {
@@ -12,7 +12,7 @@ const styles = {
     color: '#999',
   },
   h1: {
-    fontFamily: "Open Sans sans-serif",
+    fontFamily: "Montserrat",
     fontWeight: '600',
   },
 };
