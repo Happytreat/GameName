@@ -13,7 +13,7 @@ import { rootSaga } from "./saga";
 const persistConfig = {
   key: 'root',
   storage,
-  // whitelist: ['auth', 'user'],
+  whitelist: ['user'],
   // blacklist: ['user'] // will not be persisted
 };
 

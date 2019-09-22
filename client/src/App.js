@@ -27,4 +27,4 @@ class App extends Component {
 }
 
 // export default App;
-export default hot(module)(App);
+export default App;

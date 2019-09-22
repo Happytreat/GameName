@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet';
  * Uncaught RangeError: Maximum call stack size exceeded · Issue #373 · nfl/react-helmet · GitHub
  */
 const HtmlMeta = ({ subtitle, children, description }) => {
-  const title = `${subtitle} · UPlan`;
+  const title = `${subtitle} · Game Name`;
   return (
     <React.Fragment>
       <Helmet
@@ -16,7 +16,7 @@ const HtmlMeta = ({ subtitle, children, description }) => {
         meta={[
           {
             name: 'description',
-            content: description,
+            content: 'Game Name page',
           },
         ]}
       >
