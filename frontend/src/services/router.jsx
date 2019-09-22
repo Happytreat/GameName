@@ -13,42 +13,41 @@ import {
 // pages
 import NotFoundPage from '../organisms/pages/404';
 import HomePage from '../organisms/pages/Home.jsx';
-import  CustomersList from '../CustomersList';
-import  CustomerCreateUpdate  from '../CustomerCreateUpdate';
 
 import {
   ROUTE_ROOT,
-  ROUTE_LOGIN,
+  ROUTE_CREATE_QUESTIONS,
   ROUTE_GAME_ROOM,
 } from '../consts/routes';
 
 
 const Router = ({ location }) => (
   <Switch>
-    <div  className="container-fluid">
-      <nav  className="navbar navbar-expand-lg navbar-light bg-light">
-        <a  className="navbar-brand"  href="#">Django React Demo</a>
-        <button  className="navbar-toggler"  type="button"  data-toggle="collapse"  data-target="#navbarNavAltMarkup"  aria-controls="navbarNavAltMarkup"  aria-expanded="false"  aria-label="Toggle navigation">
-          <span  className="navbar-toggler-icon"></span>
-        </button>
-        <div  className="collapse navbar-collapse"  id="navbarNavAltMarkup">
-          <div  className="navbar-nav">
-            <a  className="nav-item nav-link"  href="/">CUSTOMERS</a>
-            <a  className="nav-item nav-link"  href="/customer">CREATE CUSTOMER</a>
-          </div>
-        </div>
-      </nav>
-      <div  className="content">
-        <Route path="/" exact component={CustomersList} />
-        <Route path="/customer/:pk"  component={CustomerCreateUpdate} />
-        <Route path="/customer/" exact component={CustomerCreateUpdate} />
-      </div>
-    </div>
+    <UnauthenticatedRoute path={ROUTE_ROOT} exact component={HomePage} isAuth={false} title={"Home"} />
+    <UnauthenticatedRoute component={NotFoundPage} isAuth={false} title={"404"} />
   </Switch>
 );
 
-{/*<UnauthenticatedRoute path={ROUTE_ROOT} exact component={HomePage} isAuth={false} title={"Game Name"} />*/}
-{/*<UnauthenticatedRoute component={NotFoundPage} isAuth={false} title={"Game Name"} />*/}
+
+{/*<div  className="container-fluid">*/}
+{/*  <nav  className="navbar navbar-expand-lg navbar-light bg-light">*/}
+{/*    <a  className="navbar-brand"  href="#">Django React Demo</a>*/}
+{/*    <button  className="navbar-toggler"  type="button"  data-toggle="collapse"  data-target="#navbarNavAltMarkup"  aria-controls="navbarNavAltMarkup"  aria-expanded="false"  aria-label="Toggle navigation">*/}
+{/*      <span  className="navbar-toggler-icon"></span>*/}
+{/*    </button>*/}
+{/*    <div  className="collapse navbar-collapse"  id="navbarNavAltMarkup">*/}
+{/*      <div  className="navbar-nav">*/}
+{/*        <a  className="nav-item nav-link"  href="/">CUSTOMERS</a>*/}
+{/*        <a  className="nav-item nav-link"  href="/customer">CREATE CUSTOMER</a>*/}
+{/*      </div>*/}
+{/*    </div>*/}
+{/*  </nav>*/}
+{/*  <div  className="content">*/}
+{/*    <Route path="/" exact component={CustomersList} />*/}
+{/*    <Route path="/customer/:pk"  component={CustomerCreateUpdate} />*/}
+{/*    <Route path="/customer/" exact component={CustomerCreateUpdate} />*/}
+{/*  </div>*/}
+{/*</div>*/}
 
 Router.propTypes = {
   // isAuth: PropTypes.bool.isRequired,

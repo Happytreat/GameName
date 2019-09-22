@@ -1,30 +1,62 @@
 import React, { Component } from "react";
 import Background from '../../asset/Background.png';
-import NotFoundImg from "../../asset/404.svg";
+import Title from "../../asset/GAME_NAME.png";
+import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
 
 const styles = {
   main: {
-    paddingTop: '10rem',
+    padding: '20vh 0 0 0',
     textAlign: 'center',
-    backgroundImage: `url(${Background})`
+    backgroundImage: `url(${Background})`,
+    /* Full height */
+    height: '100vh',
+
+    /* Center and scale the image nicely */
+    // backgroundPosition: 'center',
+    // backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   },
-  p: {
-    color: '#999',
-  },
-  h1: {
-    fontFamily: "Montserrat",
+  // p: {
+  //   paddingTop: '1.5rem',
+  //   color: '#999',
+  //   fontFamily: "Montserrat",
+  //   size: '14px',
+  //   fontWeight: '600',
+  // },
+  button: {
+    color: '#000',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: '12px',
     fontWeight: '600',
-  },
+    border: '#D2F2FF',
+    textTransform: 'None',
+    backgroundColor: '#D2F2FF',
+    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
+    padding: '0.5rem 0.8rem',
+    margin: '0.5rem',
+  }
 };
 
-export default class NotLoggedIn extends Component {
+export default class HomePage extends Component {
   render() {
     return (
       <div style={styles.main}>
-        <h1 style={styles.h1}>Game Name</h1>
-        <p style={styles.p}>A trivia party app</p>
-        <br />
-        <img src={NotFoundImg} alt="HomePage" style={{ maxWidth: '60vh', padding: '0 1rem 0 0' }} />
+        <img src={Title} alt="HomePage" style={{ maxWidth: '45vh', marginBottom: '7.5vh' }} />
+        <ProgressButton variant="contained"
+                        // disabled={isSubmitting}
+                        loading={false}
+                        style={styles.button}
+                        onClick={(x) => x}>
+          Play as game master
+        </ProgressButton>
+        <ProgressButton variant="contained"
+          // disabled={isSubmitting}
+                        loading={false}
+                        style={styles.button}
+                        onClick={(x) => x}>
+          Play as guest
+        </ProgressButton>
       </div>
     );
   }
