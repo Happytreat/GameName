@@ -3,8 +3,39 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Customer 
+from .models import Customer, Question
 from .serializers import *
+
+
+@api_view(['GET', 'POST'])
+def questions_list(request):
+    """
+    List questions
+    """
+    if request.method == 'GET':
+        data = []
+        nextPage = 1
+        previousPage = 1
+        questions = Question.objects.all()
+        page = request.GET.get('page', 1)
+        paginator = Paginator(questions, 10)
+        try:
+            data = paginator.page(page)
+        except PageNotAnInteger:
+            data = paginator.page(1)
+        except EmptyPage:
+            data = paginator.page(paginator.num_pages)
+
+        serializer = QuestionSerializer(data, context={'request': request}, many=True)
+        if data.has_next():
+            nextPage = data.next_page_number()
+        if data.has_previous():
+            previousPage = data.previous_page_number()
+
+        return Response({'data': serializer.data , 'count': paginator.count, 'numpages' : paginator.num_pages,
+                         'nextlink': '/api/questions/?page=' + str(nextPage),
+                         'prevlink': '/api/questions/?page=' + str(previousPage)})
+
 
 @api_view(['GET', 'POST'])
 def customers_list(request):
