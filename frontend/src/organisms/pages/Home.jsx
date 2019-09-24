@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { GoogleLogin } from 'react-google-login';
+
 import Background from '../../asset/Background.png';
 import Title from "../../asset/GAME_NAME.png";
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
@@ -17,13 +19,11 @@ const styles = {
     // backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
-  // p: {
-  //   paddingTop: '1.5rem',
-  //   color: '#999',
-  //   fontFamily: "Montserrat",
-  //   size: '14px',
-  //   fontWeight: '600',
-  // },
+};
+
+// Store the id (to send to backend) in Auth user
+const responseGoogle = (response) => {
+  console.log(response);
 };
 
 export default class HomePage extends Component {
@@ -31,12 +31,21 @@ export default class HomePage extends Component {
     return (
       <div style={styles.main}>
         <img src={Title} alt="HomePage" style={{ maxWidth: '45vh', marginBottom: '7.5vh' }} />
-        <ProgressButton variant="contained"
-                        // disabled={isSubmitting}
-                        loading={false}
-                        onClick={(x) => x}>
-          Play as game master
-        </ProgressButton>
+        <GoogleLogin
+          clientId="772369058063-665vio82g46oqmvijs344qtf1u5aiec5.apps.googleusercontent.com"
+          render={renderProps => (
+            <ProgressButton variant="contained"
+                            loading={false}
+                            onClick={renderProps.onClick}
+                            disabled={renderProps.disabled}>
+              Play as game master
+            </ProgressButton>
+          )}
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+        />
         <ProgressButton variant="contained"
           // disabled={isSubmitting}
                         loading={false}
