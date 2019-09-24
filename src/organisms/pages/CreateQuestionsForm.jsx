@@ -245,7 +245,7 @@ class CreateQuestionsForm extends Component {
                   isLoading={isSubmitting}
                   variant="outline-primary"
                   type="submit"
-                  style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: 'auto', position: 'absolute', backgroundColor: '#8ECAB1' }}
+                  style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: 'auto', position: 'absolute', backgroundColor: '#8ECAB1', textTransform: 'None' }}
                 >
                   Create Game
                 </ProgressButton>

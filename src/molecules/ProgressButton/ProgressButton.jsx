@@ -38,7 +38,7 @@ const styles = {
     color: '#000',
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: '600',
     minWidth: '25vh',
     border: '#D2F2FF',

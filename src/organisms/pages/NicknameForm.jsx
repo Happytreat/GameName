@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import * as yup from 'yup';
-import _ from 'lodash';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
+import { GoogleLogout } from 'react-google-login';
 import { Typography, AppBar, Toolbar, IconButton } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
@@ -49,6 +49,18 @@ class NicknameForm extends Component {
               <IconButton edge="start" style={{color: "#000"}} aria-label="back" href={"/"}>
                 <ArrowBackIosIcon />
               </IconButton>
+              <IconButton edge="end" aria-label="back" href={"/"} onClick={() => this.props.signOut()}>
+              {
+                this.props.isAuth
+                ? <GoogleLogout
+                    clientId="772369058063-665vio82g46oqmvijs344qtf1u5aiec5.apps.googleusercontent.com"
+                    buttonText="Logout"
+                    onLogoutSuccess={() => this.props.signOut()}
+                  >
+                  </GoogleLogout>
+                : null
+              }
+              </IconButton>
             </Toolbar>
           </AppBar>
           <Formik
@@ -84,7 +96,7 @@ class NicknameForm extends Component {
                   isLoading={isSubmitting}
                   variant="outline-primary"
                   type="submit"
-                  style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30dvh', margin: 'auto', position: 'absolute', backgroundColor: '#8ECAB1' }}
+                  style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: 'auto', position: 'absolute', backgroundColor: '#8ECAB1', textTransform: 'None' }}
                 >
                   Join Game
                 </ProgressButton>
@@ -99,6 +111,7 @@ class NicknameForm extends Component {
 
 function mapStateToProps(state) {
   return {
+    isAuth: user.isAuth(state)
   };
 }
 
@@ -111,6 +124,9 @@ function mapDispatchToProps(dispatch) {
         dispatch(userActions.error());
       }
     },
+    signOut: async () => {
+      dispatch(userActions.signout());
+    }
   };
 }
 

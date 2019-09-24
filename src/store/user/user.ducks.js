@@ -39,6 +39,7 @@ const reducer = handleActions({
   [types.signout]: () => (
     {
       fetching: false,
+      isAuth: false,
       ...initialState,
     }),
   [types.error]: (state) => (
