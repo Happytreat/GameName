@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 import * as yup from 'yup';
+import _ from 'lodash';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
+import axios from 'axios';
 import { Typography, AppBar, Toolbar, IconButton } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
 import {ROUTE_CREATE_QUESTIONS, ROUTE_CREATE_SUCCESS} from '../../consts/routes';
+import { postRequest } from '../../services/request';
+
 
 import Background from '../../asset/Background.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
+import CustomersService from '../../CustomersService';
+
+const API_URL = 'http://localhost:8010/proxy';
+const  customersService  =  new  CustomersService();
 
 const styles = {
   main: {
@@ -66,10 +74,25 @@ export default class CreateQuestionsForm extends Component {
             }}
             validationSchema={CreateGameSchema}
             onSubmit={async (values, { setSubmitting }) => {
-              console.log(values);
-              setSubmitting(false)
-              // TODO: Handle submit
-              // return this.props.handleSubmit({ values, setSubmitting });
+              setSubmitting(false);
+              const url = `${API_URL}/api/sets/`;
+              const questions = _.map(_.filter(values, (val, key) => {
+                return (key !== 'gameName' && val !== '')
+              }), val => {
+                return {
+                  "question": val
+                };
+              });
+
+              postRequest({
+                url: 'api/sets/',
+                data: {
+                  questions,
+                  "title": values.gameName,
+                  "author": "author1",
+                }
+              }).then(response => console.log(response.data));
+
               getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
             }}
           >

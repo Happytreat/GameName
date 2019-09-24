@@ -8,7 +8,8 @@ export default class CustomersService{
 
   getCustomers() {
     const url = `${API_URL}/api/customers/`;
-    return axios.get(url).then(response => response.data);
+    return axios.get(url, {
+      headers: {'Access-Control-Allow-Origin': '*', 'crossdomain': true}}).then(response => response.data);
   }
   getCustomersByURL(link){
     const url = `${API_URL}${link}`;
