@@ -1,5 +1,5 @@
 absl-py==0.7.0
-apturl==0.5.2
+apturl>=0.5.2
 asn1crypto==0.24.0
 astor==0.7.1
 awscli==1.16.207
@@ -75,7 +75,7 @@ padme==1.1.1
 pandas==0.24.0
 pandocfilters==1.4.2
 parso==0.3.2
-pbr==5.4.3
+pbr>=5.4.3
 pexpect==4.2.1
 pickleshare==0.7.5
 Pillow==5.1.0
