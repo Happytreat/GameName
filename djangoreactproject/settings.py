@@ -24,9 +24,10 @@ SECRET_KEY = '^o^%nabzk**9ies=b!efjd%t=ksa(l7lb9v1j^gil#u4jn8ntk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['gamename.herokuapp.com']
-
+ALLOWED_HOSTS = [
+    '159.65.9.106',
+    'gamename.herokuapp.com'
+]
 
 # Application definition
 
@@ -130,6 +131,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-
-
