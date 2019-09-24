@@ -5,6 +5,10 @@ import { TextField } from 'formik-material-ui';
 import { Typography, AppBar, Toolbar, IconButton } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
+import { push } from 'connected-react-router';
+import { getStore } from '../../services/store';
+import {ROUTE_CREATE_QUESTIONS, ROUTE_CREATE_SUCCESS} from '../../consts/routes';
+
 import Background from '../../asset/Background.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
 
@@ -66,6 +70,7 @@ export default class CreateQuestionsForm extends Component {
               setSubmitting(false)
               // TODO: Handle submit
               // return this.props.handleSubmit({ values, setSubmitting });
+              getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
             }}
           >
             {({ isSubmitting, isValid }) => (
@@ -219,7 +224,7 @@ export default class CreateQuestionsForm extends Component {
                   type="submit"
                   text="Create game"
                   loadingText="Loading..."
-                  style={{ boxShadow: '2px 4px 3px #E0E0E0', backgroundColor: '#8ECAB1' }}
+                  style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: 'auto', position: 'absolute', backgroundColor: '#8ECAB1' }}
                 >
                   Create Game
                 </ProgressButton>

@@ -14,17 +14,20 @@ import {
 import NotFoundPage from '../organisms/pages/404';
 import HomePage from '../organisms/pages/Home.jsx';
 import CreateQuestions from '../organisms/pages/CreateQuestionsForm';
+import CreateSuccess from '../organisms/pages/CreateSuccess';
 
 import {
   ROUTE_ROOT,
   ROUTE_CREATE_QUESTIONS,
   ROUTE_GAME_ROOM,
+  ROUTE_CREATE_SUCCESS,
 } from '../consts/routes';
 
 
 const Router = ({ location }) => (
   <Switch>
     <UnauthenticatedRoute path={ROUTE_ROOT} exact component={HomePage} isAuth={false} title={"Home"} />
+    <UnauthenticatedRoute path={ROUTE_CREATE_SUCCESS} exact component={CreateSuccess} isAuth={false} title={"Success"} />
     <UnauthenticatedRoute path={ROUTE_CREATE_QUESTIONS} exact component={CreateQuestions} isAuth={false} title={"Create Game"} />
     <UnauthenticatedRoute component={NotFoundPage} isAuth={false} title={"404"} />
   </Switch>
