@@ -8,7 +8,7 @@ import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
 import { Typography, IconButton } from "@material-ui/core";
 import IconCopy from '@material-ui/icons/Link';
 import copy from 'copy-to-clipboard';
-import {actions as userActions, selectors as user} from "../../store/user/user.ducks";
+import {selectors as user} from "../../store/user/user.ducks";
 import {connect} from "react-redux";
 
 const styles = {
@@ -53,7 +53,7 @@ class CreateSuccess extends Component {
                         loading={false}
                         style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: '1rem', backgroundColor: '#8ECAB1' }}
                         onClick={() => {
-                          getStore().dispatch(push(ROUTE_GAME_ROOM));
+                          getStore().dispatch(push(`${ROUTE_GAME_ROOM}?=nickname`));
                         }}>
           Create Game
         </ProgressButton>

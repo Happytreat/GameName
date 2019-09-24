@@ -91,6 +91,9 @@ class CreateQuestionsForm extends Component {
                 this.props.selectGame(values.gameName);
                 getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
               });
+
+              this.props.selectGame(values.gameName);
+              getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
             }}
           >
             {({ isSubmitting, isValid }) => (
