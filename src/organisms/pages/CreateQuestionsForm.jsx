@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import _ from 'lodash';
 import { Field, Form, Formik } from 'formik';
 import { TextField } from 'formik-material-ui';
-import axios from 'axios';
 import { Typography, AppBar, Toolbar, IconButton } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
@@ -15,10 +14,6 @@ import { postRequest } from '../../services/request';
 
 import Background from '../../asset/Background.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
-import CustomersService from '../../CustomersService';
-
-const API_URL = 'http://localhost:8010/proxy';
-const  customersService  =  new  CustomersService();
 
 const styles = {
   main: {
@@ -75,7 +70,6 @@ export default class CreateQuestionsForm extends Component {
             validationSchema={CreateGameSchema}
             onSubmit={async (values, { setSubmitting }) => {
               setSubmitting(false);
-              const url = `${API_URL}/api/sets/`;
               const questions = _.map(_.filter(values, (val, key) => {
                 return (key !== 'gameName' && val !== '')
               }), val => {
