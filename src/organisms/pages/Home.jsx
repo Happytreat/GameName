@@ -51,6 +51,8 @@ export default class HomePage extends Component {
           buttonText="Login"
           onSuccess={(res) => {
             responseGoogle(res);
+            console.log("Successful!");
+            // Store User Id
             // Redirect to Create Questions Form
             getStore().dispatch(push(ROUTE_CREATE_QUESTIONS));
           }}
