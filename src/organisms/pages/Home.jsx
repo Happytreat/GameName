@@ -3,6 +3,8 @@ import { GoogleLogin } from 'react-google-login';
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
 import { ROUTE_CREATE_QUESTIONS, ROUTE_GAME_ROOM } from '../../consts/routes';
+import { connect } from "react-redux";
+import { actions as userActions } from '../../store/user/user.ducks';
 
 import Background from '../../asset/Background.png';
 import Title from "../../asset/GAME_NAME.png";
@@ -29,7 +31,7 @@ const responseGoogle = (response) => {
   console.log(response);
 };
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   render() {
     return (
       <div style={styles.main}>
@@ -43,6 +45,12 @@ export default class HomePage extends Component {
                               renderProps.onClick();
                               // TODO: Remove in prod. For dev
                               getStore().dispatch(push(ROUTE_CREATE_QUESTIONS));
+                              this.props.signIn({
+                                tokenId: "12344-token",
+                                profileObj: {
+                                  givenName: 'Melodies'
+                                }
+                              });
                             }}
                             disabled={renderProps.disabled}>
               Play as game master
@@ -51,8 +59,9 @@ export default class HomePage extends Component {
           buttonText="Login"
           onSuccess={(res) => {
             responseGoogle(res);
-            console.log("Successful!");
+            console.log("Successful!" + res.tokenId);
             // Store User Id
+            this.props.signIn(res);
             // Redirect to Create Questions Form
             getStore().dispatch(push(ROUTE_CREATE_QUESTIONS));
           }}
@@ -69,3 +78,28 @@ export default class HomePage extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    signIn: async (googleResponse) => {
+      try {
+        dispatch(userActions.success({
+          googleTokenId: googleResponse.tokenId,
+          nickname: googleResponse.profileObj.givenName
+        }));
+      } catch {
+        dispatch(userActions.error());
+      }
+    },
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomePage);
+
