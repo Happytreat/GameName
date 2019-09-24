@@ -4,12 +4,12 @@ import { getStore } from '../../services/store';
 import {ROUTE_GAME_ROOM, ROUTE_ROOT} from '../../consts/routes';
 
 import Background from '../../asset/Background.png';
-import Title from "../../asset/GAME_NAME.png";
-import Rectangle from '../../asset/Rectangle.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
 import { Typography, IconButton } from "@material-ui/core";
 import IconCopy from '@material-ui/icons/Link';
 import copy from 'copy-to-clipboard';
+import {actions as userActions, selectors as user} from "../../store/user/user.ducks";
+import {connect} from "react-redux";
 
 const styles = {
   main: {
@@ -27,12 +27,12 @@ const styles = {
   },
 };
 
-export default class CreateSuccess extends Component {
+class CreateSuccess extends Component {
   render() {
     return (
       <div style={styles.main}>
-        <Typography variant="h4" style={{ fontFamily: 'Montserrat', marginBottom: '7.5vh' }}>
-          {"<Your Game Name>"}
+        <Typography variant="h4" style={{ fontFamily: 'Montserrat', marginBottom: '7.5vh', textTransform: 'capitalize' }}>
+          {`<${this.props.gameSelected}>`}
         </Typography>
         <Typography variant="body1" style={{ fontSize: '0.9rem', fontWeight: 700, fontFamily: 'Montserrat' }}>
           Share your game with your friends!
@@ -69,3 +69,18 @@ export default class CreateSuccess extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    gameSelected: user.gameSelected(state),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CreateSuccess);

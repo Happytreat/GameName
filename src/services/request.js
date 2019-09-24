@@ -2,7 +2,6 @@ import axios from 'axios';
 
 // lcp --proxyUrl http://localhost:8000
 const API_URL = 'http://localhost:8010/proxy';
-const posturl = `${API_URL}/api/sets/`;
 
 // export const isProduction = (process.env.NODE_ENV === 'production');
 //

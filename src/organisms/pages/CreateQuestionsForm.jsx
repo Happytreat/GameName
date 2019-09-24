@@ -14,6 +14,8 @@ import { postRequest } from '../../services/request';
 
 import Background from '../../asset/Background.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
+import {actions as userActions, selectors as user} from "../../store/user/user.ducks";
+import { connect } from "react-redux";
 
 const styles = {
   main: {
@@ -35,12 +37,11 @@ const styles = {
 };
 
 const CreateGameSchema = yup.object().shape({
-  // TODO: Add google sign in id
   gameName: yup.string().required('Required'),
   q1: yup.string().required('Required'),
 });
 
-export default class CreateQuestionsForm extends Component {
+class CreateQuestionsForm extends Component {
   render() {
     return (
       <>
@@ -83,11 +84,13 @@ export default class CreateQuestionsForm extends Component {
                 data: {
                   questions,
                   "title": values.gameName,
-                  "author": "author1",
+                  "author": this.props.googleTokenId,
                 }
-              }).then(response => console.log(response.data));
-
-              getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
+              }).then(response => {
+                console.log(response.data);
+                this.props.selectGame(values.gameName);
+                getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
+              });
             }}
           >
             {({ isSubmitting, isValid }) => (
@@ -239,8 +242,6 @@ export default class CreateQuestionsForm extends Component {
                   isLoading={isSubmitting}
                   variant="outline-primary"
                   type="submit"
-                  text="Create game"
-                  loadingText="Loading..."
                   style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: 'auto', position: 'absolute', backgroundColor: '#8ECAB1' }}
                 >
                   Create Game
@@ -253,3 +254,26 @@ export default class CreateQuestionsForm extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    googleTokenId: user.googleTokenId(state),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    selectGame: async (gameSelected) => {
+      try {
+        dispatch(userActions.success({gameSelected}));
+      } catch {
+        dispatch(userActions.error());
+      }
+    },
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CreateQuestionsForm);

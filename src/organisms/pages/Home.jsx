@@ -89,7 +89,8 @@ function mapDispatchToProps(dispatch) {
       try {
         dispatch(userActions.success({
           googleTokenId: googleResponse.tokenId,
-          nickname: googleResponse.profileObj.givenName
+          nickname: googleResponse.profileObj.givenName,
+          isAuth: true
         }));
       } catch {
         dispatch(userActions.error());
