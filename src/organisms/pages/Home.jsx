@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { GoogleLogin } from 'react-google-login';
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import { ROUTE_CREATE_QUESTIONS } from '../../consts/routes';
+import { ROUTE_CREATE_QUESTIONS, ROUTE_GAME_ROOM } from '../../consts/routes';
 
 import Background from '../../asset/Background.png';
 import Title from "../../asset/GAME_NAME.png";
@@ -62,7 +62,7 @@ export default class HomePage extends Component {
         <ProgressButton variant="contained"
           // disabled={isSubmitting}
                         loading={false}
-                        onClick={(x) => x}>
+                        onClick={() => getStore().dispatch(push(ROUTE_GAME_ROOM))}>
           Play as guest
         </ProgressButton>
       </div>
