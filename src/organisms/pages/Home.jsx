@@ -53,7 +53,7 @@ class HomePage extends Component {
                               // });
                             }}
                             disabled={renderProps.disabled}>
-              Play as game master
+              Play
             </ProgressButton>
           )}
           buttonText="Login"
