@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -10,7 +9,7 @@ import "./App.css";
 class App extends Component {
   render() {
     // TODO: Get name and version from env
-    console.log('Game Name client: v1.0');
+    console.log('Game Name client: v17');
 
     return (
       <div className="App container">
