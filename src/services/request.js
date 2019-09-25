@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // const API_URL = 'http://159.65.9.106:8000';
 // TODO: Update when in production
-const API_URL = 'http://localhost:8010/proxy';
+//const API_URL = 'http://localhost:8010/proxy';
+const API_URL = 'http://localhost:8000';
 
 // export const isProduction = (process.env.NODE_ENV === 'production');
 //
