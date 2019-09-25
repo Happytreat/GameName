@@ -79,20 +79,21 @@ class CreateQuestionsForm extends Component {
                 };
               });
 
+              const data = {
+                questions,
+                "title": values.gameName,
+                "author": this.props.googleTokenId,
+              };
+
               postRequest({
                 url: 'api/sets/',
-                data: {
-                  questions,
-                  "title": values.gameName,
-                  "author": this.props.googleTokenId,
-                }
+                data,
               }).then(response => {
-                console.log(response.data);
-                this.props.selectGame(values.gameName);
+                this.props.selectGame(data);
                 getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
               });
               // TODO: Remove when link up backend to Heroku
-              this.props.selectGame(values.gameName);
+              this.props.selectGame(values);
               getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
             }}
           >
@@ -239,7 +240,6 @@ class CreateQuestionsForm extends Component {
                   style={{ paddingBottom: '1rem'}}
                 />
                 <ProgressButton
-                  block
                   size="large"
                   disabled={!isValid && isSubmitting}
                   type="submit"

@@ -17,6 +17,7 @@ import Background from '../../asset/Background.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
 import {actions as userActions, selectors as user} from "../../store/user/user.ducks";
 import { connect } from "react-redux";
+import {ROUTE_GAME_ROOM} from "../../consts/routes";
 
 const styles = {
   main: {
@@ -70,6 +71,7 @@ class EnterPlayersForm extends Component {
           onSubmit={async (values, {setSubmitting}) => {
             setSubmitting(false);
             this.props.addPlayers(_.values(values));
+            getStore().dispatch(push(`${ROUTE_GAME_ROOM}`));
           }}
         >
           {({isSubmitting, isValid}) => (

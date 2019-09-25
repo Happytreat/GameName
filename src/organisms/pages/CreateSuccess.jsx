@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import {ROUTE_GAME_ROOM, ROUTE_ROOT} from '../../consts/routes';
+import {ROUTE_ADD_PLAYERS, ROUTE_ROOT} from '../../consts/routes';
 
 import Background from '../../asset/Background.png';
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
-import { Typography, IconButton } from "@material-ui/core";
-import IconCopy from '@material-ui/icons/Link';
-import copy from 'copy-to-clipboard';
+import { Typography } from "@material-ui/core";
 import {selectors as user} from "../../store/user/user.ducks";
 import {connect} from "react-redux";
 
@@ -32,28 +30,17 @@ class CreateSuccess extends Component {
     return (
       <div style={styles.main}>
         <Typography variant="h4" style={{ fontFamily: 'Montserrat', marginBottom: '7.5vh', textTransform: 'capitalize' }}>
-          {`<${this.props.gameSelected}>`}
+          {`<${this.props.gameSelected.title}>`}
         </Typography>
         <Typography variant="body1" style={{ fontSize: '0.9rem', fontWeight: 700, fontFamily: 'Montserrat' }}>
-          Share your game with your friends!
+          Play with your friends!
         </Typography>
         <br/>
-        <Typography variant="body1" style={{ fontSize: '0.9rem', fontFamily: 'Montserrat'}}>
-          Get shareable link here:
-          <IconButton
-            aria-label="copy"
-            color="primary"
-            size="small"
-            onClick={() => copy('INVITE CODE')}
-          >
-            <IconCopy style={{ fontSize: '20px' }} />
-          </IconButton>
-        </Typography>
         <ProgressButton variant="contained"
                         loading={false}
                         style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', margin: '1rem', backgroundColor: '#8ECAB1' }}
                         onClick={() => {
-                          getStore().dispatch(push(`${ROUTE_GAME_ROOM}?=nickname`));
+                          getStore().dispatch(push(ROUTE_ADD_PLAYERS));
                         }}>
           Create Game
         </ProgressButton>
