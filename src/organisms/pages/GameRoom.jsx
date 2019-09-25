@@ -83,7 +83,7 @@ class GameRoom extends Component {
                   onClick={() => {
                     this.setState({
                       questionIter: questionIter + 1,
-                      judge: (judge + 1) % total
+                      //judge: (judge + 1) % total
                     });
                     setWinner(roundWinner, points);
                   }}>
@@ -130,12 +130,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setWinner: (winner, points) => {
-      if (points[winner] !== null) {
-        points[winner] += 1
+      const p = points
+      if (_.find(_.keys(p), winner) > 0) {
+        p[winner] += 1;
       } else {
-        points[winner] = 1
+        p[winner] = 1;
       }
-      dispatch(userActions.updatePoints(points));
+      dispatch(userActions.updatePoints(p));
     },
     resetGame: () => {
       dispatch(userActions.resetPlayers());

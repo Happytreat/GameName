@@ -31,7 +31,7 @@ import {
 
 const Router = ({ isAuth, location }) => (
   <Switch>
-    <UnauthenticatedRoute path={ROUTE_ROOT} exact component={HomePage} isAuth={false} title={"Home"} />
+    <UnauthenticatedRoute path={ROUTE_ROOT} exact component={HomePage} isAuth={isAuth} title={"Home"} />
     <UnauthenticatedRoute path={ROUTE_CREATE_SUCCESS} exact component={CreateSuccess} isAuth={false} title={"Success"} />
     <UnauthenticatedRoute path={ROUTE_CREATOR_HOME} exact component={CreatorHome} isAuth={false} title={"Select Game"} />
     <AuthenticatedRoute path={ROUTE_CREATE_QUESTIONS} exact component={CreateQuestions} isAuth={isAuth} title={"Create Game"} />
