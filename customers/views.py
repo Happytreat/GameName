@@ -5,6 +5,21 @@ from rest_framework import status
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Customer, Question, QuestionSet
 from .serializers import *
+import json
+
+@api_view(['POST'])
+def question_set_secure(request):
+    """
+    Securely retrieve a question; only send if the author token is correct.
+    """
+    try:
+        pk = json.loads(request.body)["pk"]
+        author = json.loads(request.body)["author"]
+        question = QuestionSet.objects.filter(author=author).get(pk=pk)
+    except QuestionSet.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = QuestionSetSerializer(question, context={'request': request})
+    return Response(serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
