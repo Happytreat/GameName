@@ -20,8 +20,9 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/questions/$', views.questions_list),
-    url(r'^api/sets/$', views.question_set),
-    url(r'^api/customers/$', views.customers_list),
-    url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
+    url(r'^api/questions/$', views.question_list),
+    url(r'^api/questions/(?P<pk>[0-9]+)$', views.question_individual),
+    url(r'^api/sets/$', views.question_set_list),
+    url(r'^api/sets/(?P<pk>[0-9]+)$', views.question_set_individual),
+    url(r'^api/secure_sets/$', views.question_set_secure),
 ]
