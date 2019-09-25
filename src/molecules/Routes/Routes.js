@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { renderView } from "./template";
 
 
@@ -15,7 +15,9 @@ export const AuthenticatedRoute = ({ component: C, isAuth, ...rest }) => {
       render={props =>
         isAuth
           ? renderView(<C {...props} />, rest.title)
-          : null}
+          : <Redirect
+            to={`/?redirect=${props.location.pathname}${props.location.search}`}
+          />}
     />);
 };
 
@@ -42,14 +44,17 @@ function querystring(name, url = window.location.href) {
 
 // E.g. signup and login should not be allowed when user is logged in
 export const UnauthenticatedRoute = ({ component: C, isAuth, ...rest }) => {
-  // const redirect = querystring("redirect");
+  const redirect = querystring("redirect");
   return (
     <Route
       {...rest}
       render={props =>
         !isAuth
           ? renderView(<C {...props} />, rest.title)
-          : null}
+          : <Redirect
+            to={redirect === "" || redirect === null ? "/homepage" :
+              redirect}
+          />}
     />
   );
 };
