@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
 import { ROUTE_CREATE_QUESTIONS } from '../../consts/routes';
 import { connect } from "react-redux";
-import { selectors as user } from '../../store/user/user.ducks';
+import {actions as userActions, selectors as user} from '../../store/user/user.ducks';
 
 import Background from '../../asset/Background.png';
 import Title from "../../asset/GAME_NAME.png";
@@ -77,7 +77,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    signOut: async () => {
+      dispatch(userActions.signout());
+    }
+  };
 }
 
 export default connect(
