@@ -11,6 +11,7 @@ import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
 import GameLibrary from '../../molecules/GameLibrary/GameLibrary';
 import { AppBar, IconButton, Toolbar } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import {GoogleLogout} from "react-google-login";
 
 const styles = {
   main: {
@@ -36,6 +37,18 @@ class CreatorHome extends Component {
           <Toolbar>
             <IconButton edge="start" style={{color: "#000"}} aria-label="back" href={"/"}>
               <ArrowBackIosIcon />
+            </IconButton>
+            <IconButton edge="end" aria-label="signout" href={"/"} onClick={() => this.props.signOut()}>
+              {
+                this.props.isAuth
+                  ? <GoogleLogout
+                    clientId="772369058063-665vio82g46oqmvijs344qtf1u5aiec5.apps.googleusercontent.com"
+                    buttonText="Logout"
+                    onLogoutSuccess={() => this.props.signOut()}
+                  >
+                  </GoogleLogout>
+                  : null
+              }
             </IconButton>
           </Toolbar>
         </AppBar>

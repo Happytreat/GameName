@@ -55,44 +55,25 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loadSets: async ({ sets, isAuth, googleTokenId }) => {
-      // Get pre-set libraries (if any)
-      // TODO: Is there still preset or remove after prod!
-      postRequest({
-        url: 'api/secure_sets/',
-        data: {
-          "author": "Melo",
-        }
-      }).then(response => {
-        const preSets = response.data;
-        console.log("Pre-set Questions", preSets);
-        const updated = _.unionWith(sets, preSets, (x, y) => {
-          return x.pk === y.pk
-        });
-        console.log("Updated Set", updated);
-        dispatch(userActions.loadSets(updated));
-
-        if (isAuth && googleTokenId) {
-          postRequest({
-            url: 'api/secure_sets/',
-            data: {
-              "author": googleTokenId,
-            }
-          }).then(response => {
-            const fetch = response.data;
-            console.log("Author's Questions", fetch);
-            const updatedAuthor = _.unionWith(updated, fetch, (x, y) => {
-              return x.pk === y.pk
-            });
-            console.log("Updated Set after author", updatedAuthor);
-            dispatch(userActions.loadSets(updatedAuthor));
-          }).catch(err =>
-            console.log('The author set fetching is failing.', err)
-          );
-        }
-      }).catch(err =>
-        console.log('The pre-set fetching is failing.', err)
-      );
-    },
+      if (isAuth && googleTokenId) {
+        postRequest({
+          url: 'api/secure_sets/',
+          data: {
+            "author": googleTokenId,
+          }
+        }).then(response => {
+          const fetch = response.data;
+          console.log("Author's Questions", fetch);
+          const updatedAuthor = _.unionWith(sets, fetch, (x, y) => {
+            return x.pk === y.pk
+          });
+          console.log("Updated Set after author", updatedAuthor);
+          dispatch(userActions.loadSets(updatedAuthor));
+        }).catch(err =>
+          console.log('The author set fetching is failing.', err)
+        );
+      }
+    }
   };
 }
 

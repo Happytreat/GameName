@@ -130,12 +130,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setWinner: (winner, points) => {
-      if (winner in points) {
-        console.log('not contain', points)
-        points[winner] = 1
-      } else {
-        console.log('contain', points)
+      if (points[winner] !== null) {
         points[winner] += 1
+      } else {
+        points[winner] = 1
       }
       dispatch(userActions.updatePoints(points));
     },

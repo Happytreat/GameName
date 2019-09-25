@@ -68,15 +68,6 @@ class HomePage extends Component {
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
         />
-        <ProgressButton variant="contained"
-          // disabled={isSubmitting}
-                        loading={false}
-                        onClick={() => {
-                          getStore().dispatch(push(ROUTE_CREATOR_HOME));
-                          this.props.guestMode();
-                        }}>
-          Play as guest
-        </ProgressButton>
       </div>
     );
   }
