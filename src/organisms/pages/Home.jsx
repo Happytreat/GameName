@@ -71,7 +71,7 @@ class HomePage extends Component {
         <ProgressButton variant="contained"
           // disabled={isSubmitting}
                         loading={false}
-                        onClick={() => getStore().dispatch(push(ROUTE_GAME_ROOM))}>
+                        onClick={() => getStore().dispatch(push(ROUTE_CREATOR_HOME))}>
           Play as guest
         </ProgressButton>
       </div>

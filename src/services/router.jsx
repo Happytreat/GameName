@@ -34,7 +34,7 @@ const Router = ({ isAuth, location }) => (
     <UnauthenticatedRoute path={ROUTE_CREATOR_HOME} exact component={CreatorHome} isAuth={false} title={"Select Game"} />
     <AuthenticatedRoute path={ROUTE_CREATE_QUESTIONS} exact component={CreateQuestions} isAuth={isAuth} title={"Create Game"} />
     <UnauthenticatedRoute path={ROUTE_GAME_ROOM} exact component={NicknameForm} isAuth={false} title={"Set Nickname"} />
-    <UnauthenticatedRoute component={NotFoundPage} isAuth={false} title={"404"} />
+    <UnauthenticatedRoute component={NotFoundPage} isAuth={false} title={"Page Not Found"} />
   </Switch>
 );
 
