@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import { ROUTE_GAME_ROOM } from '../../consts/routes';
+import {ROUTE_ADD_PLAYERS} from '../../consts/routes';
 import { connect } from "react-redux";
 import { actions as userActions } from '../../store/user/user.ducks';
 
@@ -32,7 +32,7 @@ class GameCard extends Component {
     const { title, questions } = set;
     return (
       <div style={styles.main}>
-        <Button style={styles.button} href={ROUTE_GAME_ROOM} onClick={() => selectGame(set)}>
+        <Button style={styles.button} href={ROUTE_ADD_PLAYERS} onClick={() => selectGame(set)}>
           {title}
           <br />
           {`With ${questions.length} Questions`}
@@ -51,7 +51,7 @@ function mapDispatchToProps(dispatch) {
     selectGame: async (gameSelected) => {
       try {
         dispatch(userActions.success({gameSelected}));
-        getStore().dispatch(push(ROUTE_GAME_ROOM));
+        getStore().dispatch(push(ROUTE_ADD_PLAYERS));
       } catch {
         dispatch(userActions.error());
       }

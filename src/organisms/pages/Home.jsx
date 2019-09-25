@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { GoogleLogin } from 'react-google-login';
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import {ROUTE_CREATE_QUESTIONS, ROUTE_CREATOR_HOME, ROUTE_GAME_ROOM} from '../../consts/routes';
+import {ROUTE_CREATOR_HOME} from '../../consts/routes';
 import { connect } from "react-redux";
 import { actions as userActions } from '../../store/user/user.ducks';
 
@@ -71,7 +71,10 @@ class HomePage extends Component {
         <ProgressButton variant="contained"
           // disabled={isSubmitting}
                         loading={false}
-                        onClick={() => getStore().dispatch(push(ROUTE_CREATOR_HOME))}>
+                        onClick={() => {
+                          getStore().dispatch(push(ROUTE_CREATOR_HOME));
+                          this.props.guestMode();
+                        }}>
           Play as guest
         </ProgressButton>
       </div>
@@ -96,6 +99,9 @@ function mapDispatchToProps(dispatch) {
         dispatch(userActions.error());
       }
     },
+    guestMode: () => {
+      dispatch(userActions.signout());
+    }
   };
 }
 

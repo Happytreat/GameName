@@ -6,7 +6,9 @@ export const types = {
   error: 'user/ERROR',
   signout: 'user/SIGNOUT',
   loadSets: 'user/LOAD',
-  // clear gameSelected and sets when enter creator's home
+  resetPlayers: 'user/RESETPLAYERS',
+  addPlayers: 'user/ADDPLAYERS'
+  // clear gameSelected and sets when senter creator's home
   // clearSets: 'user/CLEAR'
 };
 
@@ -16,7 +18,8 @@ export const actions = {
   error: createAction(types.error),
   signout: createAction(types.signout),
   loadSets: createAction(types.loadSets),
-  // clearSets: createAction(types.clearSets)
+  resetPlayers: createAction(types.resetPlayers),
+  addPlayers: createAction(types.addPlayers)
 };
 
 const initialState = {
@@ -26,7 +29,8 @@ const initialState = {
   googleTokenId: '',
   isAuth: false,
   gameSelected: '',
-  sets: [] // should we preload with pre-sets?
+  sets: [],
+  players: [] // array of strings
 };
 
 const reducer = handleActions({
@@ -47,6 +51,18 @@ const reducer = handleActions({
       ...state,
       fetching: false,
       sets: action.payload,
+    }),
+  [types.resetPlayers]: (state) => (
+    {
+      ...state,
+      fetching: false,
+      players: [],
+    }),
+  [types.addPlayers]: (state, action) => (
+    {
+      ...state,
+      fetching: false,
+      players: action.payload,
     }),
   [types.signout]: () => (
     {
