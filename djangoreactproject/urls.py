@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from customers import views
 from django.conf.urls import url
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^api/sets/$', views.question_set_list),
     url(r'^api/sets/(?P<pk>[0-9]+)$', views.question_set_individual),
     url(r'^api/secure_sets/$', views.question_set_secure),
+    re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]
