@@ -17,6 +17,7 @@ import CreateQuestions from '../organisms/pages/CreateQuestionsForm';
 import CreateSuccess from '../organisms/pages/CreateSuccess';
 import AddPlayersForm from "../organisms/pages/EnterPlayersForm";
 import CreatorHome from "../organisms/pages/CreatorHome";
+import GameRoom from "../organisms/pages/GameRoom";
 
 import {
   ROUTE_ROOT,
@@ -35,7 +36,7 @@ const Router = ({ isAuth, location }) => (
     <UnauthenticatedRoute path={ROUTE_CREATOR_HOME} exact component={CreatorHome} isAuth={false} title={"Select Game"} />
     <AuthenticatedRoute path={ROUTE_CREATE_QUESTIONS} exact component={CreateQuestions} isAuth={isAuth} title={"Create Game"} />
     <UnauthenticatedRoute path={ROUTE_ADD_PLAYERS} exact component={AddPlayersForm} isAuth={false} title={"Add Players"} />
-    <UnauthenticatedRoute path={ROUTE_GAME_ROOM} exact component={AddPlayersForm} isAuth={false} title={"Play"} />
+    <UnauthenticatedRoute path={ROUTE_GAME_ROOM} exact component={GameRoom} isAuth={false} title={"Play"} />
     <UnauthenticatedRoute component={NotFoundPage} isAuth={false} title={"Page Not Found"} />
   </Switch>
 );

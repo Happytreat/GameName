@@ -71,7 +71,7 @@ class EnterPlayersForm extends Component {
           onSubmit={async (values, {setSubmitting}) => {
             setSubmitting(false);
             this.props.addPlayers(_.values(values));
-            getStore().dispatch(push(`${ROUTE_GAME_ROOM}`));
+            getStore().dispatch(push(ROUTE_GAME_ROOM));
           }}
         >
           {({isSubmitting, isValid}) => (

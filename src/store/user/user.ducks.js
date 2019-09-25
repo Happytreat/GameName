@@ -7,7 +7,8 @@ export const types = {
   signout: 'user/SIGNOUT',
   loadSets: 'user/LOAD',
   resetPlayers: 'user/RESETPLAYERS',
-  addPlayers: 'user/ADDPLAYERS'
+  addPlayers: 'user/ADDPLAYERS',
+  updatePoints: 'user/UPDATE'
   // clear gameSelected and sets when senter creator's home
   // clearSets: 'user/CLEAR'
 };
@@ -19,7 +20,8 @@ export const actions = {
   signout: createAction(types.signout),
   loadSets: createAction(types.loadSets),
   resetPlayers: createAction(types.resetPlayers),
-  addPlayers: createAction(types.addPlayers)
+  addPlayers: createAction(types.addPlayers),
+  updatePoints: createAction(types.updatePoints)
 };
 
 const initialState = {
@@ -30,7 +32,8 @@ const initialState = {
   isAuth: false,
   gameSelected: '',
   sets: [],
-  players: [] // array of strings
+  players: [],
+  points: {}
 };
 
 const reducer = handleActions({
@@ -57,12 +60,19 @@ const reducer = handleActions({
       ...state,
       fetching: false,
       players: [],
+      points: {}
     }),
   [types.addPlayers]: (state, action) => (
     {
       ...state,
       fetching: false,
       players: action.payload,
+    }),
+  [types.updatePoints]: (state, action) => (
+    {
+      ...state,
+      fetching: false,
+      points: action.payload,
     }),
   [types.signout]: () => (
     {
@@ -85,7 +95,9 @@ export const selectors = {
   isAuth: state => state.user.isAuth,
   googleTokenId: state => state.user.googleTokenId,
   gameSelected: state => state.user.gameSelected,
-  sets: state => state.user.sets
+  sets: state => state.user.sets,
+  points: state => state.user.points,
+  players: state => state.user.players
 };
 
 export default reducer;
