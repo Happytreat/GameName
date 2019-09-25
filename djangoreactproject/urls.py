@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^api/questions/(?P<pk>[0-9]+)$', views.question_individual),
     url(r'^api/sets/$', views.question_set_list),
     url(r'^api/sets/(?P<pk>[0-9]+)$', views.question_set_individual),
+    url(r'^api/secure_sets/$', views.question_set_secure),
 ]
