@@ -8,7 +8,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import { ROUTE_CREATE_QUESTIONS, ROUTE_CREATE_SUCCESS } from '../../consts/routes';
+import { ROUTE_CREATE_SUCCESS } from '../../consts/routes';
 import { postRequest } from '../../services/request';
 
 
@@ -48,7 +48,7 @@ class CreateQuestionsForm extends Component {
         <div style={styles.main}>
           <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none'}}>
             <Toolbar>
-              <IconButton edge="start" style={{color: "#000"}} aria-label="back" href={"/"}>
+              <IconButton edge="start" style={{color: "#000"}} aria-label="back" href={"/homepage"}>
                 <ArrowBackIosIcon />
               </IconButton>
             </Toolbar>
@@ -91,7 +91,7 @@ class CreateQuestionsForm extends Component {
                 this.props.selectGame(values.gameName);
                 getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
               });
-
+              // TODO: Remove when link up backend to Heroku
               this.props.selectGame(values.gameName);
               getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
             }}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { GoogleLogin } from 'react-google-login';
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import { ROUTE_CREATE_QUESTIONS, ROUTE_GAME_ROOM } from '../../consts/routes';
+import {ROUTE_CREATE_QUESTIONS, ROUTE_CREATOR_HOME, ROUTE_GAME_ROOM} from '../../consts/routes';
 import { connect } from "react-redux";
 import { actions as userActions } from '../../store/user/user.ducks';
 
@@ -44,7 +44,7 @@ class HomePage extends Component {
                             onClick={() => {
                               renderProps.onClick();
                               // TODO: Remove in prod. For dev
-                              getStore().dispatch(push(ROUTE_CREATE_QUESTIONS));
+                              getStore().dispatch(push(ROUTE_CREATOR_HOME));
                               this.props.signIn({
                                 tokenId: "12344-token",
                                 profileObj: {
@@ -62,8 +62,8 @@ class HomePage extends Component {
             console.log("Successful!" + res.tokenId);
             // Store User Id
             this.props.signIn(res);
-            // Redirect to Create Questions Form
-            getStore().dispatch(push(ROUTE_CREATE_QUESTIONS));
+            // Redirect to Creator's Home Page to select/create game
+            getStore().dispatch(push(ROUTE_CREATOR_HOME));
           }}
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}

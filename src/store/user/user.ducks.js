@@ -5,13 +5,18 @@ export const types = {
   success: 'user/SUCCESS',
   error: 'user/ERROR',
   signout: 'user/SIGNOUT',
+  loadSets: 'user/LOAD',
+  // clear gameSelected and sets when enter creator's home
+  // clearSets: 'user/CLEAR'
 };
 
 export const actions = {
   request: createAction(types.request),
   success: createAction(types.success), // For saga
   error: createAction(types.error),
-  signout: createAction(types.signout)
+  signout: createAction(types.signout),
+  loadSets: createAction(types.loadSets),
+  // clearSets: createAction(types.clearSets)
 };
 
 const initialState = {
@@ -20,7 +25,8 @@ const initialState = {
   nickname: '',
   googleTokenId: '',
   isAuth: false,
-  gameSelected: ''
+  gameSelected: '',
+  sets: [] // should we preload with pre-sets?
 };
 
 const reducer = handleActions({
@@ -35,6 +41,12 @@ const reducer = handleActions({
       ...state,
       fetching: false,
       ...action.payload,
+    }),
+  [types.loadSets]: (state, action) => (
+    {
+      ...state,
+      fetching: false,
+      sets: action.payload,
     }),
   [types.signout]: () => (
     {
@@ -56,7 +68,8 @@ export const selectors = {
   nickname: state => state.user.nickname,
   isAuth: state => state.user.isAuth,
   googleTokenId: state => state.user.googleTokenId,
-  gameSelected: state => state.user.gameSelected
+  gameSelected: state => state.user.gameSelected,
+  sets: state => state.user.sets
 };
 
 export default reducer;
