@@ -26,5 +26,8 @@ urlpatterns = [
     url(r'^api/sets/$', views.question_set_list),
     url(r'^api/sets/(?P<pk>[0-9]+)$', views.question_set_individual),
     url(r'^api/secure_sets/$', views.question_set_secure),
-    re_path('.*', TemplateView.as_view(template_name='index.html'))
+    # match the root
+    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    # match all other pages
+    url(r'^(?:.*)/?$', TemplateView.as_view(template_name='index.html'))
 ]
