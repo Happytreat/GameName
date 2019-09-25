@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// lcp --proxyUrl http://localhost:8000
-const API_URL = 'http://localhost:8010/proxy';
+const API_URL = 'http://159.65.9.106:8000';
 
 // export const isProduction = (process.env.NODE_ENV === 'production');
 //
@@ -11,6 +10,7 @@ const API_URL = 'http://localhost:8010/proxy';
 
 export const postRequest = ({ url, data }) => axios.post(`${API_URL}/${url}`, data, {
   headers: {
-    'Access-Control-Allow-Origin': '*',
-    'crossdomain': true
+    // 'Access-Control-Allow-Origin': '*',
+    // 'crossdomain': true,
+    // 'Content-Type' : 'application/json; charset=UTF-8',
   }});

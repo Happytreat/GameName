@@ -20,6 +20,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^api/questions/(?P<pk>[0-9]+)$', views.questions_individual),
     url(r'^api/questions/$', views.questions_list),
     url(r'^api/sets/$', views.question_set),
     url(r'^api/customers/$', views.customers_list),
