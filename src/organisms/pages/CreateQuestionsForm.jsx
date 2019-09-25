@@ -8,8 +8,8 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import {ROUTE_CREATE_QUESTIONS, ROUTE_CREATE_SUCCESS} from '../../consts/routes';
-import { postRequest, getRequest } from '../../services/request';
+import { ROUTE_CREATE_QUESTIONS, ROUTE_CREATE_SUCCESS } from '../../consts/routes';
+import { postRequest } from '../../services/request';
 
 
 import Background from '../../asset/Background.png';
