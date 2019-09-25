@@ -5,10 +5,10 @@ import { actions as userActions, selectors as user } from '../../store/user/user
 
 import { postRequest } from "../../services/request";
 import GameCard from '../GameCard/GameCard';
+import { Typography } from "@material-ui/core";
 
 const styles = {
   main: {
-    padding: '5vh 0 0 0',
     background: 'transparent',
     textAlign: 'center',
     fontFamily: "Montserrat",
@@ -34,6 +34,8 @@ class GameLibrary extends Component {
   render() {
     return (
       <div style={styles.main}>
+        <Typography variant="body1" gutterBottom style={{ fontFamily:'Montserrat', fontSize: '0.9rem', fontWeight: 700 }}>Game Library</Typography>
+        <br />
         {
           this.renderSets()
         }

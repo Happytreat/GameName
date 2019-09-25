@@ -50,6 +50,7 @@ class CreatorHome extends Component {
             </ProgressButton>
             : null
         }
+        <hr />
         <GameLibrary />
       </div>
     );
