@@ -1,4 +1,4 @@
-#!/home/melodies/Desktop/WebDev/GameName/env/bin/python3
+#!/home/melodies/Desktop/GameName/env/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
