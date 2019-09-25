@@ -55,7 +55,6 @@ class CreateQuestionsForm extends Component {
           </AppBar>
           <Formik
             initialValues={{
-              // TODO: add google sign in id
               gameName: '',
               q1: '',
               q2: '',
@@ -93,7 +92,7 @@ class CreateQuestionsForm extends Component {
                 getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
               });
               // TODO: Remove when link up backend to Heroku
-              this.props.selectGame(values);
+              this.props.selectGame(data);
               getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
             }}
           >

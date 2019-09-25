@@ -130,7 +130,7 @@ class EnterPlayersForm extends Component {
               <IconButton edge="start" style={{color: "#000"}} aria-label="back" href={"/"}>
                 <ArrowBackIosIcon />
               </IconButton>
-              <IconButton edge="end" aria-label="signout" href={"/"} onClick={() => this.props.signOut()}>
+              <IconButton edge="end" aria-label="signout" href={"/"}>
               {
                 this.props.isAuth
                 ? <GoogleLogout
