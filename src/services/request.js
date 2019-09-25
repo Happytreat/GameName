@@ -15,5 +15,4 @@ export const postRequest = ({ url, data }) => axios.post(`${API_URL}/${url}`, da
   headers: {
     // 'Access-Control-Allow-Origin': '*',
     // 'crossdomain': true,
-    // 'Content-Type' : 'application/json; charset=UTF-8',
   }});
