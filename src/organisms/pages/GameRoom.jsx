@@ -11,7 +11,7 @@ import {Field, Form, Formik} from "formik";
 import _ from "lodash";
 import {getStore} from "../../services/store";
 import {push} from "connected-react-router";
-import {ROUTE_GAME_ROOM} from "../../consts/routes";
+import {ROUTE_GAME_ROOM, ROUTE_ROOT} from "../../consts/routes";
 import {TextField} from "formik-material-ui";
 
 const styles = {
@@ -44,7 +44,7 @@ class GameRoom extends Component {
 
   render() {
     const {questionIter, judge, total, roundWinner} = this.state;
-    const { set: {questions}, points, players, setWinner} = this.props;
+    const { set: {questions}, points, players, setWinner, resetGame} = this.props;
     return (
       <div style={styles.main}>
         <img src={Title} alt="HomePage" style={{ maxWidth: '45vh', marginBottom: '7.5vh' }} />
@@ -92,14 +92,27 @@ class GameRoom extends Component {
               </>
             )
             :
-            <Typography variant="h4">{`Congrats! The Winner is ${_.reduce(_.keys(points), (maxPair, player) => {
-              if (points[player] > maxPair[1]) {
-                return [player, points[player]]
-              } else {
-                return maxPair
-              }
-            }, ['', 0])[0]}!!!`}
-            </Typography>
+            <>
+              <Typography variant="h4">{`Congrats! The Winner is ${_.reduce(_.keys(points), (maxPair, player) => {
+                if (points[player] > maxPair[1]) {
+                  return [player, points[player]]
+                } else {
+                  return maxPair
+                }
+              }, ['', 0])[0]}!!!`}
+              </Typography>
+              <br/>
+              <br/>
+              <ProgressButton variant="contained"
+                              loading={false}
+                              style={{ boxShadow: '2px 4px 3px #E0E0E0', minWidth: '30vh', backgroundColor: '#8ECAB1' }}
+                              onClick={() => {
+                                resetGame();
+                                getStore().dispatch(push(ROUTE_ROOT));
+                              }}>
+                Back to Home Page
+              </ProgressButton>
+            </>
         }
       </div>
     );
@@ -125,8 +138,11 @@ function mapDispatchToProps(dispatch) {
         points[winner] += 1
       }
       dispatch(userActions.updatePoints(points));
+    },
+    resetGame: () => {
+      dispatch(userActions.resetPlayers());
     }
-  };
+  }
 }
 
 export default connect(
