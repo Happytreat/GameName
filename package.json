@@ -60,7 +60,6 @@
     "node": "10.15.3",
     "npm": "6.4.1"
   },
-  "proxy": "https://game-name-api.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -12,7 +12,7 @@ const API_URL = 'https://game-name-api.herokuapp.com';
 //   ? window.location.hostname.split('.').slice(-2).join('.')
 //   : 'DEV_API_URL';
 
-export const postRequest = ({ url, data }) => axios.post(`$/${url}`, data, {
+export const postRequest = ({ url, data }) => axios.post(`${API_URL}/${url}`, data, {
   headers: {
     // 'Access-Control-Allow-Origin': '*',
     // 'crossdomain': true,
