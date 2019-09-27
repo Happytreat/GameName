@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://159.65.9.106:80';
+//const API_URL = 'http://159.65.9.106:80';
 // TODO: Update when in production
 //const API_URL = 'http://localhost:8010/proxy';
 //const API_URL = 'http://localhost:8000';
+const API_URL = 'https://game-name-api.herokuapp.com/';
 
 // export const isProduction = (process.env.NODE_ENV === 'production');
 //
