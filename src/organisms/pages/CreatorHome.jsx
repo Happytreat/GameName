@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { push } from 'connected-react-router';
 import { getStore } from '../../services/store';
-import { ROUTE_CREATE_QUESTIONS } from '../../consts/routes';
+import {ROUTE_CREATE_QUESTIONS, ROUTE_ROOT} from '../../consts/routes';
 import { connect } from "react-redux";
 import {actions as userActions, selectors as user} from '../../store/user/user.ducks';
 
@@ -44,7 +44,11 @@ class CreatorHome extends Component {
                   ? <GoogleLogout
                     clientId="772369058063-665vio82g46oqmvijs344qtf1u5aiec5.apps.googleusercontent.com"
                     buttonText="Logout"
-                    onLogoutSuccess={() => this.props.signOut()}
+                    onLogoutSuccess={() => {
+                        this.props.signOut();
+                        getStore().dispatch(push(ROUTE_ROOT));
+                      }
+                    }
                   >
                   </GoogleLogout>
                   : null

@@ -5,14 +5,11 @@ import { actions as userActions, selectors as user } from '../../store/user/user
 import Background from '../../asset/Background.png';
 import Title from "../../asset/GAME_NAME.png";
 import ProgressButton from '../../molecules/ProgressButton/ProgressButton';
-import Answer from "../../molecules/GameRoom/Answer";
 import {MenuItem, Select, Typography} from "@material-ui/core";
-import {Field, Form, Formik} from "formik";
 import _ from "lodash";
 import {getStore} from "../../services/store";
 import {push} from "connected-react-router";
-import {ROUTE_GAME_ROOM, ROUTE_ROOT} from "../../consts/routes";
-import {TextField} from "formik-material-ui";
+import {ROUTE_ROOT} from "../../consts/routes";
 
 const styles = {
   main: {
@@ -43,7 +40,7 @@ class GameRoom extends Component {
   }
 
   render() {
-    const {questionIter, judge, total, roundWinner} = this.state;
+    const {questionIter, total, roundWinner} = this.state;
     const { set: {questions}, points, players, setWinner, resetGame} = this.props;
     return (
       <div style={styles.main}>
@@ -83,7 +80,6 @@ class GameRoom extends Component {
                   onClick={() => {
                     this.setState({
                       questionIter: questionIter + 1,
-                      //judge: (judge + 1) % total
                     });
                     setWinner(roundWinner, points);
                   }}>

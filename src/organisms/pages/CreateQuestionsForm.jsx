@@ -90,10 +90,7 @@ class CreateQuestionsForm extends Component {
               }).then(response => {
                 this.props.selectGame(data);
                 getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
-              });
-              // TODO: Remove when link up backend to Heroku
-              this.props.selectGame(data);
-              getStore().dispatch(push(ROUTE_CREATE_SUCCESS));
+              }).catch(err => console.log(err));
             }}
           >
             {({ isSubmitting, isValid }) => (

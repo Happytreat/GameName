@@ -5,7 +5,7 @@ import { TextField } from 'formik-material-ui';
 import { GoogleLogout } from 'react-google-login';
 import _ from 'lodash';
 import {
-  Typography, AppBar, Toolbar, IconButton, Select, FormControl, MenuItem, InputLabel
+  Typography, AppBar, Toolbar, IconButton, Select, MenuItem
 } from "@material-ui/core";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 

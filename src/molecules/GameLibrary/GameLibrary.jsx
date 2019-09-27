@@ -63,11 +63,11 @@ function mapDispatchToProps(dispatch) {
           }
         }).then(response => {
           const fetch = response.data;
-          console.log("Author's Questions", fetch);
+          // console.log("Author's Questions", fetch);
           const updatedAuthor = _.unionWith(sets, fetch, (x, y) => {
             return x.pk === y.pk
           });
-          console.log("Updated Set after author", updatedAuthor);
+          // console.log("Updated Set after author", updatedAuthor);
           dispatch(userActions.loadSets(updatedAuthor));
         }).catch(err =>
           console.log('The author set fetching is failing.', err)
