@@ -17,6 +17,7 @@
     "formik": "^1.5.8",
     "formik-material-ui": "0.0.22",
     "history": "^4.10.1",
+    "http-proxy-middleware": "^0.20.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
