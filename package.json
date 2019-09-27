@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://cs3216.github.io/a3-mobile-cloud-group-07",
+  "homepage":"https://happytreat.github.io/GameName/",
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
