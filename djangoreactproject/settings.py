@@ -27,6 +27,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '159.65.9.106',
     'gamename.herokuapp.com',
+    'game-name-api.herokuapp.com',
     'localhost'
 ]
 
@@ -60,6 +61,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
        'http://localhost:3000',
+       'https://gamename.herokuapp.com'
 )
 
 ROOT_URLCONF = 'djangoreactproject.urls'
@@ -138,7 +140,3 @@ STATICFILES_DIR = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
