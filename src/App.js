@@ -9,7 +9,7 @@ import "./App.css";
 class App extends Component {
   render() {
     // TODO: Get name and version from env
-    console.log('Game Name client: v32');
+    console.log('Game Name client: v29');
 
     return (
       <div className="App container">
